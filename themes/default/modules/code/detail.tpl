@@ -53,7 +53,9 @@
 <!-- BEGIN: tabs_content -->
 <div class="tab-content">
 	<div role="tabpanel" class="tab-pane active" id="tab_descriptionhtml">
-		<p style="padding: 6px">{ROW.descriptionhtml}</p>
+		<div class="panel panel-default" style="border-top: none">
+			<div class="panel-body" id="descriptionhtml">{ROW.descriptionhtml}</div>
+		</div>
 	</div>
 	<div role="tabpanel" class="tab-pane" id="tab_code_php">
 		<textarea id="code_php">{ROW.code_php}</textarea>
