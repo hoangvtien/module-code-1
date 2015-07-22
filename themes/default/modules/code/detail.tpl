@@ -12,8 +12,13 @@
 <!-- BEGIN: tabs -->
 <div class="clearfix">&nbsp;</div>
 <ul class="nav nav-tabs" role="tablist">
-	<!-- BEGIN: code_php -->
+	<!-- BEGIN: descriptionhtml -->
 	<li role="presentation" class="active">
+		<a href="#tab_code_php" aria-controls="tab_descriptionhtml" role="tab" data-toggle="tab">{LANG.content}</a>
+	</li>
+	<!-- END: descriptionhtml -->
+	<!-- BEGIN: code_php -->
+	<li role="presentation">
 		<a href="#tab_code_php" aria-controls="tab_code_php" role="tab" data-toggle="tab">{LANG.code_php}</a>
 	</li>
 	<!-- END: code_php -->
@@ -47,7 +52,10 @@
 
 <!-- BEGIN: tabs_content -->
 <div class="tab-content">
-	<div role="tabpanel" class="tab-pane active" id="tab_code_php">
+	<div role="tabpanel" class="tab-pane active" id="tab_descriptionhtml">
+		<p style="padding: 6px">{ROW.descriptionhtml}</p>
+	</div>
+	<div role="tabpanel" class="tab-pane" id="tab_code_php">
 		<textarea id="code_php">{ROW.code_php}</textarea>
 	</div>
 	<div role="tabpanel" class="tab-pane" id="tab_code_php_template">

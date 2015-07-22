@@ -21,6 +21,7 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
   title varchar(255) NOT NULL,
   alias varchar(255) NOT NULL,
   description TEXT NOT NULL,
+  descriptionhtml TEXT NOT NULL,
   code_php text NOT NULL,
   code_php_template text NOT NULL,
   code_html text NOT NULL,

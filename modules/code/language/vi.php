@@ -25,3 +25,4 @@ $lang_module['code_css'] = 'Mã CSS';
 $lang_module['code_js'] = 'Mã javascript';
 $lang_module['cat'] = 'Chủ đề';
 $lang_module['poster'] = 'Người đăng';
+$lang_module['content'] = 'Nội dung';

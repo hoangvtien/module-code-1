@@ -46,6 +46,12 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<label class="col-sm-5 col-md-3 control-label"><strong>{LANG.descriptionhtml}</strong></label>
+						<div class="col-sm-14 col-md-21">
+							{EDITOR}
+						</div>
+					</div>
+					<div class="form-group">
 						<label class="col-sm-5 col-md-3 control-label"><strong>{LANG.code_php}</strong></label>
 						<div class="col-sm-14 col-md-21">
 							<textarea class="form-control" id="code_php" name="code_php">{ROW.code_php}</textarea>
@@ -127,6 +133,9 @@
 	});
 
 	$('#form').submit(function() {
+	    for ( instance in CKEDITOR.instances )
+	        CKEDITOR.instances[instance].updateElement();
+
 		var form_data = $(this).serializeArray();
 		for ( index = 0; index < form_data.length; ++index) {
 			if (form_data[index].name == "code_html" || form_data[index].name == "code_css" || form_data[index].name == "code_js" || form_data[index].name == "code_php_template" || form_data[index].name == "code_php") {

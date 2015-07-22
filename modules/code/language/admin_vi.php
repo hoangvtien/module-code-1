@@ -22,6 +22,7 @@ $lang_module['content'] = 'Thêm bản ghi';
 $lang_module['save'] = 'Lưu lại';
 $lang_module['note'] = 'Ghi chú';
 $lang_module['description'] = 'Mô tả';
+$lang_module['descriptionhtml'] = 'Mô tả chi tiết';
 $lang_module['keywords'] = 'Từ khóa';
 $lang_module['image'] = 'Hình ảnh';
 
