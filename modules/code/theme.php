@@ -73,6 +73,8 @@ function nv_build_demo( $array_data )
 {
 	global $db, $nv_Request, $module_name, $module_upload, $op, $my_footer;
 
+	$contents = '';
+
 	if( !empty( $array_data['code_html'] ) and !file_exists( NV_ROOTDIR . '/' . NV_FILES_DIR . '/' . $module_upload . '/' . $array_data['alias'] . '-' . $array_data['id'] . '.tpl' ) )
 	{
 		file_put_contents( NV_ROOTDIR . '/' . NV_FILES_DIR . '/' . $module_upload . '/' . $array_data['alias'] . '-' . $array_data['id'] . '.tpl', $array_data['code_html'] );
@@ -89,8 +91,11 @@ function nv_build_demo( $array_data )
 		$my_footer .= '<script type="text/javascript">' . $array_data['code_js'] . '</script>';
 	}
 
-	$xtpl = new XTemplate( $array_data['alias'] . '-' . $array_data['id'] . '.tpl', NV_ROOTDIR . '/' . NV_FILES_DIR . '/' . $module_upload );
-	$xtpl->assign( 'ROW', $array_data );
+	if( !empty( $array_data['code_php_template'] ) )
+	{
+		$xtpl = new XTemplate( $array_data['alias'] . '-' . $array_data['id'] . '.tpl', NV_ROOTDIR . '/' . NV_FILES_DIR . '/' . $module_upload );
+		$xtpl->assign( 'ROW', $array_data );
+	}
 
 	if( !empty( $array_data['code_php'] ) )
 	{
@@ -98,6 +103,15 @@ function nv_build_demo( $array_data )
 		echo eval( $array_data['code_php'] );
 	}
 
-	$xtpl->parse( 'main' );
-	return $xtpl->text( 'main' );
+	if( !empty( $array_data['code_php_template'] ) )
+	{
+		$xtpl->parse( 'main' );
+		$contents = $xtpl->text( 'main' );
+	}
+	elseif( !empty( $array_data['code_html'] ) )
+	{
+		$contents = $array_data['code_html'];
+	}
+
+	return $contents;
 }

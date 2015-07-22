@@ -135,7 +135,7 @@ if ( $nv_Request->isset_request( 'submit', 'post' ) )
 		{
 			if( empty( $row['id'] ) )
 			{
-				$stmt = $db->prepare( 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_cat (title, alias, description, keywords, weight, image, status) VALUES (:title, :alias, :description, :keywords, :image, :weight, :status)' );
+				$stmt = $db->prepare( 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_cat (title, alias, description, keywords, image, weight, status) VALUES (:title, :alias, :description, :keywords, :image, :weight, :status)' );
 
 				$weight = $db->query( 'SELECT max(weight) FROM ' . NV_PREFIXLANG . '_' . $module_data . '_cat' )->fetchColumn();
 				$weight = intval( $weight ) + 1;
@@ -212,7 +212,7 @@ if ( ! $nv_Request->isset_request( 'id', 'post,get' ) )
 	$num_items = $sth->fetchColumn();
 
 	$db->select( '*' )
-		->order( 'weight ASC' )
+		->order( 'weight' )
 		->limit( $per_page )
 		->offset( ( $page - 1 ) * $per_page );
 	$sth = $db->prepare( $db->sql() );
