@@ -39,7 +39,10 @@ $array_data['code_php'] = nv_unhtmlspecialchars( $array_data['code_php'] );
 $array_data['code_php_template'] = nv_unhtmlspecialchars( $array_data['code_php_template'] );
 
 $contents .= '<h1>' . $array_data['title'] . '</h1><hr />';
-$contents .= nv_build_demo( $array_data );
+if( $array_data['viewdemo'] )
+{
+	$contents .= nv_build_demo( $array_data );
+}
 $contents .= nv_theme_code_detail( $array_data );
 
 $page_title = $array_data['title'];

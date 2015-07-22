@@ -26,6 +26,7 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
   code_js text NOT NULL,
   adduser int(11) NOT NULL DEFAULT '0',
   addtime int(11) NOT NULL DEFAULT '0',
+  viewdemo tinyint(1) unsigned NOT NULL DEFAULT '1',
   viewcount mediumint(8) unsigned NOT NULL DEFAULT '0',
   status tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (id)

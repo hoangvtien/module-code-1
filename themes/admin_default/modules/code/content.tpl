@@ -14,67 +14,82 @@
 	{ERROR}
 </div>
 <!-- END: error -->
-<div class="panel panel-default">
-	<div class="panel-body">
-		<form class="form-horizontal" action="{NV_BASE_ADMINURL}index.php?{NV_LANG_VARIABLE}={NV_LANG_DATA}&amp;{NV_NAME_VARIABLE}={MODULE_NAME}&amp;{NV_OP_VARIABLE}={OP}" method="post" id="form">
-			<input type="hidden" name="id" value="{ROW.id}" />
-			<div class="form-group">
-				<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.title}</strong> <span class="red">(*)</span></label>
-				<div class="col-sm-14 col-md-16">
-					<input class="form-control" type="text" name="title" value="{ROW.title}" required="required" oninvalid="setCustomValidity( nv_required )" oninput="setCustomValidity('')" />
+
+<form class="form-horizontal" action="{NV_BASE_ADMINURL}index.php?{NV_LANG_VARIABLE}={NV_LANG_DATA}&amp;{NV_NAME_VARIABLE}={MODULE_NAME}&amp;{NV_OP_VARIABLE}={OP}" method="post" id="form">
+	<div class="row">
+		<div class="col-md-19">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<input type="hidden" name="id" value="{ROW.id}" />
+					<div class="form-group">
+						<label class="col-sm-5 col-md-3 control-label"><strong>{LANG.title}</strong><span class="red"> (*)</span></label>
+						<div class="col-sm-14 col-md-21">
+							<input class="form-control" type="text" name="title" value="{ROW.title}" required="required" oninvalid="setCustomValidity( nv_required )" oninput="setCustomValidity('')" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-5 col-md-3 control-label"><strong>{LANG.alias}</strong></label>
+						<div class="col-sm-14 col-md-21">
+							<div class="input-group">
+								<input class="form-control" type="text" name="alias" value="{ROW.alias}" id="id_alias" />
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button">
+										<i class="fa fa-refresh fa-lg" onclick="nv_get_alias('id_alias');">&nbsp;</i>
+									</button> </span>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-5 col-md-3 control-label"><strong>{LANG.description}</strong></label>
+						<div class="col-sm-14 col-md-21">
+							<textarea class="form-control" name="description" rows="4">{ROW.description}</textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-5 col-md-3 control-label"><strong>{LANG.code_php}</strong></label>
+						<div class="col-sm-14 col-md-21">
+							<textarea class="form-control" id="code_php" name="code_php">{ROW.code_php}</textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-5 col-md-3 control-label"><strong>{LANG.code_php_template}</strong></label>
+						<div class="col-sm-14 col-md-21">
+							<textarea class="form-control" id="code_php_template" name="code_php_template">{ROW.code_php_template}</textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-5 col-md-3 control-label"><strong>{LANG.code_html}</strong></label>
+						<div class="col-sm-14 col-md-21">
+							<textarea class="form-control" id="code_html" name="code_html">{ROW.code_html}</textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-5 col-md-3 control-label"><strong>{LANG.code_css}</strong></label>
+						<div class="col-sm-14 col-md-21">
+							<textarea class="form-control" id="code_css" name="code_css">{ROW.code_css}</textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-5 col-md-3 control-label"><strong>{LANG.code_js}</strong></label>
+						<div class="col-sm-14 col-md-21">
+							<textarea class="form-control" name="code_js" id="code_js">{ROW.code_js}</textarea>
+						</div>
+					</div>
+					<input type="hidden" name="submit" />
+					<div class="form-group" style="text-align: center"><input class="btn btn-primary" type="submit" value="{LANG.save}" />
+					</div>
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.alias}</strong></label>
-				<div class="col-sm-14 col-md-16">
-					<input class="form-control" type="text" name="alias" value="{ROW.alias}" id="id_alias" />
-				</div>
-				<div class="col-sm-4 col-md-4">
-					<i class="fa fa-refresh fa-lg icon-pointer" onclick="nv_get_alias('id_alias');">&nbsp;</i>
+		</div>
+		<div class="col-md-5">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<label><input type="checkbox" name="viewdemo" value="1" {ROW.ck_viewdemo} />{LANG.viewdemo}</label>
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.description}</strong></label>
-				<div class="col-sm-14 col-md-16">
-					<textarea class="form-control" name="description">{ROW.description}</textarea>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.code_php}</strong></label>
-				<div class="col-sm-14 col-md-16">
-					<textarea class="form-control" id="code_php" name="code_php">{ROW.code_php}</textarea>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.code_php_template}</strong></label>
-				<div class="col-sm-14 col-md-16">
-					<textarea class="form-control" id="code_php_template" name="code_php_template">{ROW.code_php_template}</textarea>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.code_html}</strong></label>
-				<div class="col-sm-14 col-md-16">
-					<textarea class="form-control" id="code_html" name="code_html">{ROW.code_html}</textarea>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.code_css}</strong></label>
-				<div class="col-sm-14 col-md-16">
-					<textarea class="form-control" id="code_css" name="code_css">{ROW.code_css}</textarea>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.code_js}</strong></label>
-				<div class="col-sm-14 col-md-16">
-					<textarea class="form-control" name="code_js" id="code_js">{ROW.code_js}</textarea>
-				</div>
-			</div>
-			<input type="hidden" name="submit" />
-			<div class="form-group" style="text-align: center"><input class="btn btn-primary" type="submit" value="{LANG.save}" />
-			</div>
-		</form>
+		</div>
 	</div>
-</div>
+</form>
 
 <script type="text/javascript">
 	//<![CDATA[
@@ -116,10 +131,10 @@
 			data : form_data
 		}).done(function(res) {
 			var r_split = res.split('_');
-			if( r_split[0] == 'OK' ){
+			if (r_split[0] == 'OK') {
 				window.location.href = script_name + '?' + nv_name_variable + '=' + nv_module_name;
-			}else{
-				alert( r_split[1] );
+			} else {
+				alert(r_split[1]);
 			}
 		});
 		return false;

@@ -39,5 +39,6 @@ $lang_module['code_css'] = 'Mã CSS';
 $lang_module['code_js'] = 'Mã javascript';
 $lang_module['viewcount'] = 'Lượt xem';
 $lang_module['status'] = 'Trạng thái';
+$lang_module['viewdemo'] = 'Hiển thị demo';
 $lang_module['error_required_title'] = 'Lỗi: bạn cần nhập dữ liệu cho Tiêu đề';
 $lang_module['error_database'] = 'Có lỗi xảy ra trong quá trình tương tác với CSDL';

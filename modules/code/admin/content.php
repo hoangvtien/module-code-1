@@ -17,6 +17,11 @@ if ( $nv_Request->isset_request( 'get_alias_title', 'post' ) )
 	die( $alias );
 }
 
+if( !file_exists( NV_ROOTDIR . '/' . NV_FILES_DIR . '/' . $module_upload ) )
+{
+	nv_mkdir( NV_ROOTDIR . '/' . NV_FILES_DIR, $module_upload );
+}
+
 $row = array();
 $error = array();
 $row['id'] = $nv_Request->get_int( 'id', 'post,get', 0 );
@@ -31,6 +36,7 @@ if ( $nv_Request->isset_request( 'submit', 'post' ) )
 	$row['code_html'] = $nv_Request->get_textarea( 'code_html', '' );
 	$row['code_css'] = $nv_Request->get_textarea( 'code_css', '' );
 	$row['code_js'] = $nv_Request->get_textarea( 'code_js', 'post', NV_ALLOWED_HTML_TAGS );
+	$row['viewdemo'] = $nv_Request->get_int( 'viewdemo', 'post', 0 );
 
 	if( empty( $row['title'] ) )
 	{
@@ -41,11 +47,11 @@ if ( $nv_Request->isset_request( 'submit', 'post' ) )
 	{
 		if( empty( $row['id'] ) )
 		{
-			$stmt = $db->prepare( 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . ' (title, alias, description, code_php, code_php_template, code_html, code_css, code_js, adduser, addtime, status) VALUES (:title, :alias, :description, :code_php, :code_php_template, :code_html, :code_css, :code_js, ' . $admin_info['userid'] . ', ' . NV_CURRENTTIME . ', 1)' );
+			$stmt = $db->prepare( 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . ' (title, alias, description, code_php, code_php_template, code_html, code_css, code_js, adduser, viewdemo, addtime, status) VALUES (:title, :alias, :description, :code_php, :code_php_template, :code_html, :code_css, :code_js, ' . $admin_info['userid'] . ', ' . NV_CURRENTTIME . ', :viewdemo, 1)' );
 		}
 		else
 		{
-			$stmt = $db->prepare( 'UPDATE ' . NV_PREFIXLANG . '_' . $module_data . ' SET title = :title, alias = :alias, description = :description, code_php = :code_php, code_php_template = :code_php_template, code_html = :code_html, code_css = :code_css, code_js = :code_js WHERE id=' . $row['id'] );
+			$stmt = $db->prepare( 'UPDATE ' . NV_PREFIXLANG . '_' . $module_data . ' SET title = :title, alias = :alias, description = :description, code_php = :code_php, code_php_template = :code_php_template, code_html = :code_html, code_css = :code_css, code_js = :code_js, viewdemo = :viewdemo WHERE id=' . $row['id'] );
 		}
 		$stmt->bindParam( ':title', $row['title'], PDO::PARAM_STR );
 		$stmt->bindParam( ':alias', $row['alias'], PDO::PARAM_STR );
@@ -55,6 +61,7 @@ if ( $nv_Request->isset_request( 'submit', 'post' ) )
 		$stmt->bindParam( ':code_html', $row['code_html'], PDO::PARAM_STR, strlen($row['code_html']) );
 		$stmt->bindParam( ':code_css', $row['code_css'], PDO::PARAM_STR, strlen($row['code_css']) );
 		$stmt->bindParam( ':code_js', $row['code_js'], PDO::PARAM_STR, strlen($row['code_js']) );
+		$stmt->bindParam( ':viewdemo', $row['viewdemo'], PDO::PARAM_INT );
 
 		$exc = $stmt->execute();
 		if( $exc )
@@ -95,7 +102,10 @@ else
 	$row['code_html'] = '';
 	$row['code_css'] = '';
 	$row['code_js'] = '';
+	$row['viewdemo'] = 1;
 }
+
+$row['ck_viewdemo'] = $row['viewdemo'] ? 'checked="checked"': '';
 
 $row['code_html'] = !empty( $row['code_html'] ) ? nv_unhtmlspecialchars( $row['code_html'] ) : '';
 
