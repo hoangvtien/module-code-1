@@ -8,10 +8,8 @@
  * @Createdate Tue, 14 Jul 2015 04:03:52 GMT
  */
 
-if ( ! defined( 'NV_ADMIN' ) ) die( 'Stop!!!' );
+if( !defined( 'NV_MAINFILE' ) )	die( 'Stop!!!' );
 
-$allow_func = array( 'main', 'config', 'content', 'cat' );
-
-$submenu['content'] = $lang_module['content'];
-$submenu['cat'] = $lang_module['cat'];
-$submenu['config'] = $lang_module['config'];
+// Categories
+$sql = 'SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_cat ORDER BY weight ASC';
+$array_cat = nv_db_cache( $sql, 'id', $module_name );

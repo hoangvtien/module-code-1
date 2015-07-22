@@ -23,3 +23,5 @@ $lang_module['code_php_template'] = 'Mã PHP giao diện';
 $lang_module['code_html'] = 'Mã HTML';
 $lang_module['code_css'] = 'Mã CSS';
 $lang_module['code_js'] = 'Mã javascript';
+$lang_module['cat'] = 'Chủ đề';
+$lang_module['poster'] = 'Người đăng';

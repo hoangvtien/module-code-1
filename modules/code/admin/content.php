@@ -27,6 +27,7 @@ $error = array();
 $row['id'] = $nv_Request->get_int( 'id', 'post,get', 0 );
 if ( $nv_Request->isset_request( 'submit', 'post' ) )
 {
+	$row['catid'] = $nv_Request->get_int( 'catid', 'post', 0 );
 	$row['title'] = $nv_Request->get_title( 'title', 'post', '' );
 	$row['alias'] = $nv_Request->get_title( 'alias', 'post', '' );
 	$row['alias'] = ( empty($row['alias'] ))? change_alias( $row['title'] ) : change_alias( $row['alias'] );
@@ -43,16 +44,22 @@ if ( $nv_Request->isset_request( 'submit', 'post' ) )
 		die( 'NO_' . $lang_module['error_required_title'] );
 	}
 
+	if( empty( $row['catid'] ) )
+	{
+		die( 'NO_' . $lang_module['error_required_catid'] );
+	}
+
 	try
 	{
 		if( empty( $row['id'] ) )
 		{
-			$stmt = $db->prepare( 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . ' (title, alias, description, code_php, code_php_template, code_html, code_css, code_js, adduser, viewdemo, addtime, status) VALUES (:title, :alias, :description, :code_php, :code_php_template, :code_html, :code_css, :code_js, ' . $admin_info['userid'] . ', ' . NV_CURRENTTIME . ', :viewdemo, 1)' );
+			$stmt = $db->prepare( 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . ' (catid, title, alias, description, code_php, code_php_template, code_html, code_css, code_js, adduser, viewdemo, addtime, status) VALUES (:catid, :title, :alias, :description, :code_php, :code_php_template, :code_html, :code_css, :code_js, ' . $admin_info['userid'] . ', ' . NV_CURRENTTIME . ', :viewdemo, 1)' );
 		}
 		else
 		{
-			$stmt = $db->prepare( 'UPDATE ' . NV_PREFIXLANG . '_' . $module_data . ' SET title = :title, alias = :alias, description = :description, code_php = :code_php, code_php_template = :code_php_template, code_html = :code_html, code_css = :code_css, code_js = :code_js, viewdemo = :viewdemo WHERE id=' . $row['id'] );
+			$stmt = $db->prepare( 'UPDATE ' . NV_PREFIXLANG . '_' . $module_data . ' SET catid = :catid, title = :title, alias = :alias, description = :description, code_php = :code_php, code_php_template = :code_php_template, code_html = :code_html, code_css = :code_css, code_js = :code_js, viewdemo = :viewdemo WHERE id=' . $row['id'] );
 		}
+		$stmt->bindParam( ':catid', $row['catid'], PDO::PARAM_INT );
 		$stmt->bindParam( ':title', $row['title'], PDO::PARAM_STR );
 		$stmt->bindParam( ':alias', $row['alias'], PDO::PARAM_STR );
 		$stmt->bindParam( ':description', $row['description'], PDO::PARAM_STR, strlen($row['description']) );
@@ -94,6 +101,7 @@ elseif( $row['id'] > 0 )
 else
 {
 	$row['id'] = 0;
+	$row['catid'] = 0;
 	$row['title'] = '';
 	$row['alias'] = '';
 	$row['description'] = '';
@@ -122,6 +130,18 @@ $xtpl->assign( 'NV_BASE_SITEURL', NV_BASE_SITEURL );
 $xtpl->assign( 'MODULE_FILE', $module_file );
 $xtpl->assign( 'OP', $op );
 $xtpl->assign( 'ROW', $row );
+
+if( !empty( $array_cat ) )
+{
+	$i=0;
+	foreach( $array_cat as $cat )
+	{
+		$cat['checked'] = ($i == 0 OR $row['catid'] == $cat['id']) ? 'checked="checked"' : '';
+		$xtpl->assign( 'CAT', $cat );
+		$xtpl->parse( 'main.cat' );
+		$i++;
+	}
+}
 
 if( ! empty( $error ) )
 {

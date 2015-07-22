@@ -19,7 +19,17 @@ $lang_translator['langtype'] = 'lang_module';
 $lang_module['main'] = 'Trang chính';
 $lang_module['config'] = 'Cấu hình';
 $lang_module['content'] = 'Thêm bản ghi';
-$lang_module['save'] = 'Save';
+$lang_module['save'] = 'Lưu lại';
+$lang_module['note'] = 'Ghi chú';
+$lang_module['description'] = 'Mô tả';
+$lang_module['keywords'] = 'Từ khóa';
+$lang_module['image'] = 'Hình ảnh';
+
+$lang_module['cat'] = 'Chủ đề';
+$lang_module['cat_add'] = 'Thêm chủ đề';
+$lang_module['cat_edit'] = 'Sửa chủ đề';
+$lang_module['error_required_title'] = 'Bạn cần nhập tiêu đề';
+$lang_module['error_required_catid'] = 'Bạn cần chọn chủ đề';
 
 //Lang for function content
 $lang_module['add'] = 'Thêm mới';
@@ -31,7 +41,6 @@ $lang_module['search_title'] = 'Nhập từ khóa tìm kiếm';
 $lang_module['search_submit'] = 'Tìm kiếm';
 $lang_module['title'] = 'Tiêu đề';
 $lang_module['alias'] = 'Liên kết tĩnh';
-$lang_module['description'] = 'Giới thiệu';
 $lang_module['code_php'] = 'Mã PHP';
 $lang_module['code_php_template'] = 'Mã PHP giao diện';
 $lang_module['code_html'] = 'Mã HTML';

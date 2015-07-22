@@ -38,7 +38,14 @@ $array_data['code_js'] = nv_unhtmlspecialchars( $array_data['code_js'] );
 $array_data['code_php'] = nv_unhtmlspecialchars( $array_data['code_php'] );
 $array_data['code_php_template'] = nv_unhtmlspecialchars( $array_data['code_php_template'] );
 
-$contents .= '<h1>' . $array_data['title'] . '</h1><hr />';
+// Nguoi dang
+$sql = 'SELECT username, last_name, first_name FROM ' . NV_USERS_GLOBALTABLE . ' WHERE userid=' . $array_data['adduser'];
+list( $username, $last_name, $first_name ) = $db->query( $sql )->fetch( 3 );
+$array_data['adduser'] = nv_show_name_user( $first_name, $last_name, $username );
+
+$contents .= '<h1>' . $array_data['title'] . '</h1>';
+$contents .= '<span><strong>' . $lang_module['cat'] . '</strong>: <a href="#" title="' . $array_cat[$array_data['catid']]['title'] . '">' . $array_cat[$array_data['catid']]['title'] . '</a>&nbsp;&nbsp;&nbsp;<span><strong>' . $lang_module['poster'] . '</strong>: ' . $array_data['adduser'] . '</span>';
+$contents .= '<hr />';
 if( $array_data['viewdemo'] )
 {
 	$contents .= nv_build_demo( $array_data );

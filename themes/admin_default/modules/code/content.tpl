@@ -83,6 +83,14 @@
 		</div>
 		<div class="col-md-5">
 			<div class="panel panel-default">
+				<div class="panel-heading">{LANG.cat}</div>
+				<div class="panel-body">
+					<!-- BEGIN: cat -->
+					<label><input type="radio" class="catid" name="catid" value="{CAT.id}" {CAT.checked} />{CAT.title}</label>
+					<!-- END: cat -->
+				</div>
+			</div>
+			<div class="panel panel-default">
 				<div class="panel-body">
 					<label><input type="checkbox" name="viewdemo" value="1" {ROW.ck_viewdemo} />{LANG.viewdemo}</label>
 				</div>
