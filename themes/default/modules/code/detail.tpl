@@ -14,7 +14,7 @@
 <ul class="nav nav-tabs" role="tablist">
 	<!-- BEGIN: descriptionhtml -->
 	<li role="presentation" class="active">
-		<a href="#tab_code_php" aria-controls="tab_descriptionhtml" role="tab" data-toggle="tab">{LANG.content}</a>
+		<a href="#tab_descriptionhtml" aria-controls="tab_descriptionhtml" role="tab" data-toggle="tab">{LANG.content}</a>
 	</li>
 	<!-- END: descriptionhtml -->
 	<!-- BEGIN: code_php -->
