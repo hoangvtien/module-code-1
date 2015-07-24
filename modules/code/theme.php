@@ -105,8 +105,8 @@ function nv_build_demo( $array_data )
 
 	if( !empty( $array_data['code_php_template'] ) )
 	{
-		$xtpl->parse( 'main' );
-		$contents = $xtpl->text( 'main' );
+		$array_data['code_php_template'] = str_replace( '<?php', '', $array_data['code_php_template'] );
+		echo eval( $array_data['code_php_template'] );
 	}
 	elseif( !empty( $array_data['code_html'] ) )
 	{
