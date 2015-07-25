@@ -59,7 +59,7 @@ if ( $nv_Request->isset_request( 'submit', 'post' ) )
 	{
 		if( empty( $row['id'] ) )
 		{
-			$stmt = $db->prepare( 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . ' (catid, title, alias, description, descriptionhtml, code_php, code_php_template, code_html, code_css, code_js, adduser, viewdemo, addtime, status) VALUES (:catid, :title, :alias, :description, :descriptionhtml, :code_php, :code_php_template, :code_html, :code_css, :code_js, ' . $admin_info['userid'] . ', ' . NV_CURRENTTIME . ', :viewdemo, 1)' );
+			$stmt = $db->prepare( 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . ' (catid, title, alias, description, descriptionhtml, code_php, code_php_template, code_html, code_css, code_js, adduser, addtime, viewdemo, status) VALUES (:catid, :title, :alias, :description, :descriptionhtml, :code_php, :code_php_template, :code_html, :code_css, :code_js, ' . $admin_info['userid'] . ', ' . NV_CURRENTTIME . ', :viewdemo, 1)' );
 		}
 		else
 		{
@@ -154,7 +154,7 @@ if( !empty( $array_cat ) )
 
 if( defined( 'NV_EDITOR' ) and nv_function_exists( 'nv_aleditor' ) )
 {
-	$editor = nv_aleditor( 'descriptionhtml', '100%', '400px', $row['descriptionhtml'], 'Basic' );
+	$editor = nv_aleditor( 'descriptionhtml', '100%', '400px', $row['descriptionhtml'] );
 }
 else
 {
