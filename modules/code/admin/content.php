@@ -38,6 +38,7 @@ if ( $nv_Request->isset_request( 'submit', 'post' ) )
 	$row['alias'] = ( empty($row['alias'] ))? change_alias( $row['title'] ) : change_alias( $row['alias'] );
 	$row['description'] = $nv_Request->get_textarea( 'description', '', 'br' );
 	$row['descriptionhtml'] = $nv_Request->get_editor( 'descriptionhtml', '', NV_ALLOWED_HTML_TAGS );
+	$row['image'] = $nv_Request->get_title( 'image', 'post', '' );
 	$row['code_php'] = $nv_Request->get_textarea( 'code_php', 'post', NV_ALLOWED_HTML_TAGS );
 	$row['code_php_template'] = $nv_Request->get_textarea( 'code_php_template', 'post', NV_ALLOWED_HTML_TAGS );
 	$row['code_html'] = $nv_Request->get_textarea( 'code_html', '' );
@@ -57,19 +58,26 @@ if ( $nv_Request->isset_request( 'submit', 'post' ) )
 
 	try
 	{
+		if( !empty( $row['image'] ) )
+		{
+			$lu = strlen( NV_BASE_SITEURL . NV_UPLOADS_DIR . '/' . $module_upload . '/' );
+			$row['image'] = substr( $row['image'], $lu );
+		}
+
 		if( empty( $row['id'] ) )
 		{
-			$stmt = $db->prepare( 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . ' (catid, title, alias, description, descriptionhtml, code_php, code_php_template, code_html, code_css, code_js, adduser, addtime, viewdemo, status) VALUES (:catid, :title, :alias, :description, :descriptionhtml, :code_php, :code_php_template, :code_html, :code_css, :code_js, ' . $admin_info['userid'] . ', ' . NV_CURRENTTIME . ', :viewdemo, 1)' );
+			$stmt = $db->prepare( 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . ' (catid, title, alias, description, descriptionhtml, image, code_php, code_php_template, code_html, code_css, code_js, adduser, addtime, viewdemo, status) VALUES (:catid, :title, :alias, :description, :descriptionhtml, :image, :code_php, :code_php_template, :code_html, :code_css, :code_js, ' . $admin_info['userid'] . ', ' . NV_CURRENTTIME . ', :viewdemo, 1)' );
 		}
 		else
 		{
-			$stmt = $db->prepare( 'UPDATE ' . NV_PREFIXLANG . '_' . $module_data . ' SET catid = :catid, title = :title, alias = :alias, description = :description, descriptionhtml = :descriptionhtml, code_php = :code_php, code_php_template = :code_php_template, code_html = :code_html, code_css = :code_css, code_js = :code_js, viewdemo = :viewdemo WHERE id=' . $row['id'] );
+			$stmt = $db->prepare( 'UPDATE ' . NV_PREFIXLANG . '_' . $module_data . ' SET catid = :catid, title = :title, alias = :alias, description = :description, descriptionhtml = :descriptionhtml, image = :image, code_php = :code_php, code_php_template = :code_php_template, code_html = :code_html, code_css = :code_css, code_js = :code_js, viewdemo = :viewdemo WHERE id=' . $row['id'] );
 		}
 		$stmt->bindParam( ':catid', $row['catid'], PDO::PARAM_INT );
 		$stmt->bindParam( ':title', $row['title'], PDO::PARAM_STR );
 		$stmt->bindParam( ':alias', $row['alias'], PDO::PARAM_STR );
 		$stmt->bindParam( ':description', $row['description'], PDO::PARAM_STR, strlen($row['description']) );
 		$stmt->bindParam( ':descriptionhtml', $row['descriptionhtml'], PDO::PARAM_STR, strlen($row['descriptionhtml']) );
+		$stmt->bindParam( ':image', $row['image'], PDO::PARAM_STR, strlen($row['image']) );
 		$stmt->bindParam( ':code_php', $row['code_php'], PDO::PARAM_STR, strlen($row['code_php']) );
 		$stmt->bindParam( ':code_php_template', $row['code_php_template'], PDO::PARAM_STR, strlen($row['code_php_template']) );
 		$stmt->bindParam( ':code_html', $row['code_html'], PDO::PARAM_STR, strlen($row['code_html']) );
@@ -113,6 +121,7 @@ else
 	$row['alias'] = '';
 	$row['description'] = '';
 	$row['descriptionhtml'] = '';
+	$row['image'] = '';
 	$row['code_php'] = '';
 	$row['code_php_template'] = '';
 	$row['code_html'] = '';
@@ -122,9 +131,12 @@ else
 }
 
 $row['ck_viewdemo'] = $row['viewdemo'] ? 'checked="checked"': '';
-
 $row['code_html'] = !empty( $row['code_html'] ) ? nv_unhtmlspecialchars( $row['code_html'] ) : '';
 $row['descriptionhtml'] = htmlspecialchars( nv_editor_br2nl( $row['descriptionhtml'] ) );
+if( !empty( $row['image'] ) and file_exists( NV_UPLOADS_REAL_DIR . '/' . $module_upload . '/' . $row['image'] ) )
+{
+	$row['image'] = NV_BASE_SITEURL . NV_UPLOADS_DIR . '/' . $module_upload . '/' . $row['image'];
+}
 
 $xtpl = new XTemplate( $op . '.tpl', NV_ROOTDIR . '/themes/' . $global_config['module_theme'] . '/modules/' . $module_file );
 $xtpl->assign( 'LANG', $lang_module );
@@ -137,6 +149,7 @@ $xtpl->assign( 'MODULE_NAME', $module_name );
 $xtpl->assign( 'MODULE_UPLOAD', $module_upload );
 $xtpl->assign( 'NV_BASE_SITEURL', NV_BASE_SITEURL );
 $xtpl->assign( 'MODULE_FILE', $module_file );
+$xtpl->assign( 'NV_UPLOADS_DIR', NV_UPLOADS_DIR );
 $xtpl->assign( 'OP', $op );
 $xtpl->assign( 'ROW', $row );
 
@@ -154,7 +167,7 @@ if( !empty( $array_cat ) )
 
 if( defined( 'NV_EDITOR' ) and nv_function_exists( 'nv_aleditor' ) )
 {
-	$editor = nv_aleditor( 'descriptionhtml', '100%', '400px', $row['descriptionhtml'] );
+	$editor = nv_aleditor( 'descriptionhtml', '100%', '250px', $row['descriptionhtml'] );
 }
 else
 {

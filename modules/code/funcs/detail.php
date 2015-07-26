@@ -43,14 +43,51 @@ $sql = 'SELECT username, last_name, first_name FROM ' . NV_USERS_GLOBALTABLE . '
 list( $username, $last_name, $first_name ) = $db->query( $sql )->fetch( 3 );
 $array_data['adduser'] = nv_show_name_user( $first_name, $last_name, $username );
 
+if( ! defined( 'FACEBOOK_JSSDK' ) )
+{
+	$lang = ( NV_LANG_DATA == 'vi' ) ? 'vi_VN' : 'en_US';
+	$facebookappid = '835372636499958';
+
+	$contents .= "<div id=\"fb-root\"></div>
+	<script type=\"text/javascript\" data-show=\"after\">
+	 (function(d, s, id) {
+	 var js, fjs = d.getElementsByTagName(s)[0];
+	 if (d.getElementById(id)) return;
+	 js = d.createElement(s); js.id = id;
+	 js.src = \"//connect.facebook.net/" . $lang . "/all.js#xfbml=1&appId=" . $facebookappid . "\";
+	 fjs.parentNode.insertBefore(js, fjs);
+	 }(document, 'script', 'facebook-jssdk'));
+	</script>";
+	define( 'FACEBOOK_JSSDK', true );
+}
+
+if( ! defined( 'GOOGLE_PLUS' ) )
+{
+	$contents .= "<script type=\"text/javascript\" data-show=\"after\">
+	window.___gcfg = {lang: nv_sitelang};
+	(function() {
+	var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+	po.src = 'https://apis.google.com/js/plusone.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+	})();
+	</script>";
+	define( 'GOOGLE_PLUS', true );
+}
+
 $contents .= '<h1>' . $array_data['title'] . '</h1>';
 $contents .= '<span><strong>' . $lang_module['cat'] . '</strong>: <a href="#" title="' . $array_cat[$array_data['catid']]['title'] . '">' . $array_cat[$array_data['catid']]['title'] . '</a>&nbsp;&nbsp;&nbsp;<span><strong>' . $lang_module['poster'] . '</strong>: ' . $array_data['adduser'] . '</span>';
+$contents .= '<div style="margin-top: 10px"><div style="float: left; margin-right: 30px" class="fb-like" data-href="' . $client_info['selfurl'] . '" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div><div class="g-plusone" data-size="medium"></div></div>';
 $contents .= '<hr />';
 if( $array_data['viewdemo'] )
 {
 	$contents .= nv_build_demo( $array_data );
 }
 $contents .= nv_theme_code_detail( $array_data );
+
+if( !empty( $array_data['image'] ) )
+{
+	$meta_property['og:image'] = NV_MY_DOMAIN . NV_BASE_SITEURL . NV_UPLOADS_DIR . '/' . $module_upload . '/' . $array_data['image'];
+}
 
 $page_title = $array_data['title'];
 $description = $array_data['description'];

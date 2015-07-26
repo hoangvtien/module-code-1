@@ -52,6 +52,19 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<label class="col-sm-3 control-label"><strong>{LANG.image}</strong></label>
+						<div class="col-sm-21">
+							<div class="input-group">
+								<input class="form-control" type="text" name="image" id="image" value="{ROW.image}"/>
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button" id="selectimg">
+										<em class="fa fa-folder-open-o fa-fix">&nbsp;</em>
+									</button>
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
 						<label class="col-sm-5 col-md-3 control-label"><strong>{LANG.code_php}</strong></label>
 						<div class="col-sm-14 col-md-21">
 							<textarea class="form-control" id="code_php" name="code_php">{ROW.code_php}</textarea>
@@ -154,6 +167,14 @@
 				alert(r_split[1]);
 			}
 		});
+		return false;
+	});
+
+	$("#selectimg").click(function() {
+		var area = "image";
+		var path = "{NV_UPLOADS_DIR}/{MODULE_UPLOAD}";
+		var type = "image";
+		nv_open_browse("{NV_BASE_ADMINURL}index.php?{NV_NAME_VARIABLE}=upload&popup=1&area=" + area + "&path=" + path + "&type=" + type, "NVImg", 850, 500, "resizable=no,scrollbars=no,toolbar=no,location=no,status=no");
 		return false;
 	});
 
