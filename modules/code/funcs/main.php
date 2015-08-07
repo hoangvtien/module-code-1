@@ -19,7 +19,7 @@ $array_data = array();
 $db->sqlreset()
   ->select( 'COUNT(*)' )
   ->from( NV_PREFIXLANG . '_' . $module_data )
-  ->where( 'status=1' );
+  ->where( 'status=1 AND catid > 0' );
 
 $all_page = $db->query( $db->sql() )->fetchColumn();
 
