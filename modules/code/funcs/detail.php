@@ -74,8 +74,11 @@ if( ! defined( 'GOOGLE_PLUS' ) )
 	define( 'GOOGLE_PLUS', true );
 }
 
-$contents .= '<h1>' . $array_data['title'] . '</h1>';
-$contents .= '<span><strong>' . $lang_module['cat'] . '</strong>: <a href="#" title="' . $array_cat[$array_data['catid']]['title'] . '">' . $array_cat[$array_data['catid']]['title'] . '</a>&nbsp;&nbsp;&nbsp;<span><strong>' . $lang_module['poster'] . '</strong>: ' . $array_data['adduser'] . '</span>';
+if( $array_data['catid'] > 0 )
+{
+	$contents .= '<h1>' . $array_data['title'] . '</h1>';
+	$contents .= '<span><strong>' . $lang_module['cat'] . '</strong>: <a href="#" title="' . $array_cat[$array_data['catid']]['title'] . '">' . $array_cat[$array_data['catid']]['title'] . '</a>&nbsp;&nbsp;&nbsp;<span><strong>' . $lang_module['poster'] . '</strong>: ' . $array_data['adduser'] . '</span>';
+}
 $contents .= '<div style="margin-top: 10px"><div style="float: left; margin-right: 30px" class="fb-like" data-href="' . $client_info['selfurl'] . '" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div><div class="g-plusone" data-size="medium"></div></div>';
 $contents .= '<hr />';
 if( $array_data['viewdemo'] )

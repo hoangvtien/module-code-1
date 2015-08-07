@@ -34,6 +34,10 @@ if ( $nv_Request->isset_request( 'submit', 'post' ) )
 {
 	$row['catid'] = $nv_Request->get_int( 'catid', 'post', 0 );
 	$row['title'] = $nv_Request->get_title( 'title', 'post', '' );
+	if( empty( $row['title'] ) )
+	{
+		$row['title'] = $admin_info['username'] . '-' . nv_genpass( 6 );
+	}
 	$row['alias'] = $nv_Request->get_title( 'alias', 'post', '' );
 	$row['alias'] = ( empty($row['alias'] ))? change_alias( $row['title'] ) : change_alias( $row['alias'] );
 	$row['description'] = $nv_Request->get_textarea( 'description', '', 'br' );
@@ -51,10 +55,13 @@ if ( $nv_Request->isset_request( 'submit', 'post' ) )
 		die( 'NO_' . $lang_module['error_required_title'] );
 	}
 
+	/*
 	if( empty( $row['catid'] ) )
 	{
 		die( 'NO_' . $lang_module['error_required_catid'] );
 	}
+	 *
+	 */
 
 	try
 	{
@@ -152,6 +159,11 @@ $xtpl->assign( 'MODULE_FILE', $module_file );
 $xtpl->assign( 'NV_UPLOADS_DIR', NV_UPLOADS_DIR );
 $xtpl->assign( 'OP', $op );
 $xtpl->assign( 'ROW', $row );
+
+$array_cat[0] = array(
+	'id' => 0,
+	'title' => $lang_module['cat_none']
+);
 
 if( !empty( $array_cat ) )
 {

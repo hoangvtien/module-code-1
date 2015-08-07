@@ -29,6 +29,7 @@ $lang_module['image'] = 'Hình ảnh';
 $lang_module['cat'] = 'Chủ đề';
 $lang_module['cat_add'] = 'Thêm chủ đề';
 $lang_module['cat_edit'] = 'Sửa chủ đề';
+$lang_module['cat_none'] = 'Không thuộc chủ đề nào';
 $lang_module['error_required_title'] = 'Bạn cần nhập tiêu đề';
 $lang_module['error_required_catid'] = 'Bạn cần chọn chủ đề';
 

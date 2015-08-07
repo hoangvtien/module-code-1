@@ -22,9 +22,9 @@
 				<div class="panel-body">
 					<input type="hidden" name="id" value="{ROW.id}" />
 					<div class="form-group">
-						<label class="col-sm-5 col-md-3 control-label"><strong>{LANG.title}</strong><span class="red"> (*)</span></label>
+						<label class="col-sm-5 col-md-3 control-label"><strong>{LANG.title}</strong></label>
 						<div class="col-sm-14 col-md-21">
-							<input class="form-control" type="text" name="title" value="{ROW.title}" required="required" oninvalid="setCustomValidity( nv_required )" oninput="setCustomValidity('')" />
+							<input class="form-control" type="text" name="title" value="{ROW.title}" />
 						</div>
 					</div>
 					<div class="form-group">
@@ -105,7 +105,7 @@
 				<div class="panel-heading">{LANG.cat}</div>
 				<div class="panel-body">
 					<!-- BEGIN: cat -->
-					<label><input type="radio" class="catid" name="catid" value="{CAT.id}" {CAT.checked} />{CAT.title}</label>
+					<label class="show"><input type="radio" class="catid" name="catid" value="{CAT.id}" {CAT.checked} />{CAT.title}</label>
 					<!-- END: cat -->
 				</div>
 			</div>

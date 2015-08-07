@@ -9,6 +9,15 @@
 <script src="{NV_BASE_SITEURL}modules/{MODULE_FILE}/js/codemirror/mode/php/php.js"></script>
 <script src="{NV_BASE_SITEURL}modules/{MODULE_FILE}/js/codemirror/mode/clike/clike.js"></script>
 
+<script type="text/javascript" data-show="after">
+  window.___gcfg = {lang: nv_sitelang};
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
 <!-- BEGIN: tabs -->
 <div class="clearfix">&nbsp;</div>
 <ul class="nav nav-tabs" role="tablist">
@@ -45,7 +54,14 @@
 </ul>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$(".nav-tabs li:eq(0) a").tab('show');
+		if(window.location.hash) {
+			var hash = window.location.hash.substring(1);
+			$('.nav-tabs a[href="#' + hash + '"]').tab('show');
+		}
+		else
+		{
+			$(".nav-tabs li:eq(0) a").tab('show');
+		}
 	});
 </script>
 <!-- END: tabs -->
@@ -76,14 +92,9 @@
 
 <script type="text/javascript">
 	//<![CDATA[
-	var CodeMirror_PHP = CodeMirror.fromTextArea(document.getElementById('code_php'), {
-		mode : "application/x-httpd-php",
-		lineNumbers : true,
-		readOnly : true
-	});
-
 	$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
 		var target = $(e.target).attr("href");
+		window.history.pushState( window.location.href , '', target );
 		if (target == '#tab_code_php') {
 			$('#tab_code_php').html('<textarea id="code_php">' + $('#code_php').val() + '</textarea>');
 			var CodeMirror_PHP = CodeMirror.fromTextArea(document.getElementById('code_php'), {
