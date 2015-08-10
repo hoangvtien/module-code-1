@@ -138,7 +138,7 @@ else
 }
 
 $row['ck_viewdemo'] = $row['viewdemo'] ? 'checked="checked"': '';
-$row['code_html'] = !empty( $row['code_html'] ) ? nv_unhtmlspecialchars( $row['code_html'] ) : '';
+//$row['code_html'] = !empty( $row['code_html'] ) ? nv_unhtmlspecialchars( $row['code_html'] ) : '';
 $row['descriptionhtml'] = htmlspecialchars( nv_editor_br2nl( $row['descriptionhtml'] ) );
 if( !empty( $row['image'] ) and file_exists( NV_UPLOADS_REAL_DIR . '/' . $module_upload . '/' . $row['image'] ) )
 {

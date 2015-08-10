@@ -32,11 +32,11 @@ if( empty( $time_set ) )
 	$db->query( $query );
 }
 
-$array_data['code_html'] = nv_unhtmlspecialchars( $array_data['code_html'] );
-$array_data['code_css'] = nv_unhtmlspecialchars( $array_data['code_css'] );
-$array_data['code_js'] = nv_unhtmlspecialchars( $array_data['code_js'] );
-$array_data['code_php'] = nv_unhtmlspecialchars( $array_data['code_php'] );
-$array_data['code_php_template'] = nv_unhtmlspecialchars( $array_data['code_php_template'] );
+$array_data['code_html_unhtml'] = nv_unhtmlspecialchars( $array_data['code_html'] );
+$array_data['code_css_unhtml'] = nv_unhtmlspecialchars( $array_data['code_css'] );
+$array_data['code_js_unhtml'] = nv_unhtmlspecialchars( $array_data['code_js'] );
+$array_data['code_php_unhtml'] = nv_unhtmlspecialchars( $array_data['code_php'] );
+$array_data['code_php_template_unhtml'] = nv_unhtmlspecialchars( $array_data['code_php_template'] );
 
 // Nguoi dang
 $sql = 'SELECT username, last_name, first_name FROM ' . NV_USERS_GLOBALTABLE . ' WHERE userid=' . $array_data['adduser'];

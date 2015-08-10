@@ -77,18 +77,18 @@ function nv_build_demo( $array_data )
 
 	if( !empty( $array_data['code_html'] ) and !file_exists( NV_ROOTDIR . '/' . NV_FILES_DIR . '/' . $module_upload . '/' . $array_data['alias'] . '-' . $array_data['id'] . '.tpl' ) )
 	{
-		file_put_contents( NV_ROOTDIR . '/' . NV_FILES_DIR . '/' . $module_upload . '/' . $array_data['alias'] . '-' . $array_data['id'] . '.tpl', $array_data['code_html'] );
+		file_put_contents( NV_ROOTDIR . '/' . NV_FILES_DIR . '/' . $module_upload . '/' . $array_data['alias'] . '-' . $array_data['id'] . '.tpl', $array_data['code_html_unhtml'] );
 	}
 
 	if( !empty( $array_data['code_css'] ) )
 	{
-		$my_footer .= '<style type="text/css">' . $array_data['code_css'] . '</style>';
+		$contents .= '<style type="text/css">' . $array_data['code_css_unhtml'] . '</style>';
 	}
 
 	if( !empty( $array_data['code_js'] ) )
 	{
-		$my_footer .= '<script type="text/javascript">var id=' . $array_data['id'] .  '</script>';
-		$my_footer .= '<script type="text/javascript">' . $array_data['code_js'] . '</script>';
+		$contents .= '<script type="text/javascript">var id=' . $array_data['id'] .  '</script>';
+		$contents .= '<script type="text/javascript">' . $array_data['code_js_unhtml'] . '</script>';
 	}
 
 	if( !empty( $array_data['code_php_template'] ) )
@@ -99,18 +99,18 @@ function nv_build_demo( $array_data )
 
 	if( !empty( $array_data['code_php'] ) )
 	{
-		$array_data['code_php'] = str_replace( '<?php', '', $array_data['code_php'] );
-		echo eval( $array_data['code_php'] );
+		$array_data['code_php_unhtml'] = str_replace( '<?php', '', $array_data['code_php_unhtml'] );
+		echo eval( $array_data['code_php_unhtml'] );
 	}
 
 	if( !empty( $array_data['code_php_template'] ) )
 	{
-		$array_data['code_php_template'] = str_replace( '<?php', '', $array_data['code_php_template'] );
-		echo eval( $array_data['code_php_template'] );
+		$array_data['code_php_template_unhtml'] = str_replace( '<?php', '', $array_data['code_php_template_unhtml'] );
+		echo eval( $array_data['code_php_template_unhtml'] );
 	}
 	elseif( !empty( $array_data['code_html'] ) )
 	{
-		$contents = $array_data['code_html'];
+		$contents .= $array_data['code_html_unhtml'];
 	}
 
 	return $contents;
