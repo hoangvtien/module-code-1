@@ -23,7 +23,7 @@ else
 	$db->sqlreset()
 		->select( 'id, alias, addtime' )
 		->from( NV_PREFIXLANG . '_' . $module_data )
-		->where( 'status=1' )
+		->where( 'status=1 AND catid > 0' )
 		->order( 'addtime DESC' )
 		->limit( 1000 );
 	$result = $db->query( $db->sql() );

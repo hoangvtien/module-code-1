@@ -10,7 +10,7 @@
 <script src="{NV_BASE_SITEURL}modules/{MODULE_FILE}/js/codemirror/mode/clike/clike.js"></script>
 
 <script type="text/javascript" data-show="after">
-  window.___gcfg = {lang: nv_sitelang};
+  window.___gcfg = {lang: nv_lang_data};
   (function() {
     var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
     po.src = 'https://apis.google.com/js/plusone.js';
@@ -94,7 +94,7 @@
 	//<![CDATA[
 	$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
 		var target = $(e.target).attr("href");
-		window.history.pushState( window.location.href , '', target );
+		//window.history.pushState( window.location.href , '', target );
 		if (target == '#tab_code_php') {
 			$('#tab_code_php').html('<textarea id="code_php">' + $('#code_php').val() + '</textarea>');
 			var CodeMirror_PHP = CodeMirror.fromTextArea(document.getElementById('code_php'), {

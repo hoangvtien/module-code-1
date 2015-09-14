@@ -88,7 +88,7 @@ function nv_build_demo( $array_data )
 	if( !empty( $array_data['code_js'] ) )
 	{
 		$contents .= '<script type="text/javascript">var id=' . $array_data['id'] .  '</script>';
-		$contents .= '<script type="text/javascript">' . $array_data['code_js_unhtml'] . '</script>';
+		$my_footer .= '<script type="text/javascript">' . $array_data['code_js_unhtml'] . '</script>';
 	}
 
 	if( !empty( $array_data['code_php_template'] ) )
