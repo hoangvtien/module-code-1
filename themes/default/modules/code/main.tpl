@@ -12,4 +12,8 @@
 </div>
 <!-- END: loop -->
 
+<!-- BEGIN: page -->
+<div class="text-center">{PAGE}</div>
+<!-- END: page -->
+
 <!-- END: main -->

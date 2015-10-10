@@ -14,6 +14,7 @@ $page_title = $module_info['custom_title'];
 $key_words = $module_info['keywords'];
 
 $array_data = array();
+$base_url = NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . '=' . $module_name;
 
 // Fetch Limit
 $db->sqlreset()
@@ -35,7 +36,13 @@ while( $row = $_query->fetch() )
 	$array_data[] = $row;
 }
 
-$contents = nv_theme_code_main( $array_data );
+if( $page > 1 )
+{
+	$page_title = $module_info['custom_title'] . ' - ' . $lang_module['page'] . ' ' . $page;
+}
+$page = nv_alias_page( $page_title, $base_url, $all_page, $per_page, $page );
+
+$contents = nv_theme_code_main( $array_data, $page );
 
 include NV_ROOTDIR . '/includes/header.php';
 echo nv_site_theme( $contents );

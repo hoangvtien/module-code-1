@@ -16,7 +16,7 @@ if ( ! defined( 'NV_IS_MOD_CODE' ) ) die( 'Stop!!!' );
  * @param mixed $array_data
  * @return
  */
-function nv_theme_code_main ( $array_data )
+function nv_theme_code_main ( $array_data, $page = '' )
 {
     global $global_config, $module_name, $module_file, $lang_module, $module_config, $module_info, $op;
 
@@ -30,6 +30,12 @@ function nv_theme_code_main ( $array_data )
 			$xtpl->assign( 'DATA', $data );
 			$xtpl->parse( 'main.loop' );
 		}
+	}
+
+	if( !empty( $page ) )
+	{
+		$xtpl->assign( 'PAGE', $page );
+		$xtpl->parse( 'main.page' );
 	}
 
     $xtpl->parse( 'main' );
