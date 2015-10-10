@@ -8,7 +8,7 @@
 			<em class="fa fa-code fa-5x">&nbsp;</em>
 			<!-- END: icon -->
 			<!-- BEGIN: image -->
-			<img src="{DATA.image}" class="img-thumbnail" width="90" />
+			<img src="{DATA.image}" class="img-thumbnail list-image" width="90" />
 			<!-- END: image -->
 		</div>
 		<h2><a href="{DATA.url_view}" title="{DATA.title}">{DATA.title}</a></h2>
