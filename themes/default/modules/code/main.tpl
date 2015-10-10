@@ -5,7 +5,7 @@
 	<div class="panel-body">
 		<div class="pull-left">
 			<!-- BEGIN: icon -->
-			<em class="fa fa-code fa-5x">&nbsp;</em>
+			<em class="fa fa-code fa-5x list-image">&nbsp;</em>
 			<!-- END: icon -->
 			<!-- BEGIN: image -->
 			<img src="{DATA.image}" class="img-thumbnail list-image" width="90" />
