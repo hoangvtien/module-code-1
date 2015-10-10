@@ -28,6 +28,16 @@ function nv_theme_code_main ( $array_data, $page = '' )
 		foreach( $array_data as $data )
 		{
 			$xtpl->assign( 'DATA', $data );
+
+			if( !empty( $data['image'] ) )
+			{
+				$xtpl->parse( 'main.loop.image' );
+			}
+			else
+			{
+				$xtpl->parse( 'main.loop.icon' );
+			}
+
 			$xtpl->parse( 'main.loop' );
 		}
 	}

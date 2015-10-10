@@ -24,7 +24,7 @@ $db->sqlreset()
 
 $all_page = $db->query( $db->sql() )->fetchColumn();
 
-$db->select( 'id, title, alias, description' )
+$db->select( 'id, title, alias, description, image' )
   ->order( 'id DESC' )
   ->limit( $per_page )
   ->offset( ($page - 1) * $per_page );
@@ -32,6 +32,11 @@ $db->select( 'id, title, alias, description' )
 $_query = $db->query( $db->sql() );
 while( $row = $_query->fetch() )
 {
+	if( !empty( $row['image'] ) )
+	{
+		$img_url = NV_UPLOADS_REAL_DIR . '/' . $module_upload . '/' . $row['image'];
+		$row['image'] = nv_resize_crop_image( $img_url, 90, 70, $module_name );
+	}
 	$row['url_view'] = NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=' . $module_name . '/' . $row['alias'] . '-' . $row['id'];
 	$array_data[] = $row;
 }
