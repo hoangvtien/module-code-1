@@ -14,13 +14,14 @@ if ( ! defined( 'NV_IS_MOD_CODE' ) ) die( 'Stop!!!' );
  * nv_theme_code_main()
  *
  * @param mixed $array_data
+ * @param mixed $page
  * @return
  */
 function nv_theme_code_main ( $array_data, $page = '' )
 {
     global $global_config, $module_name, $module_file, $lang_module, $module_config, $module_info, $op;
 
-    $xtpl = new XTemplate( $op . '.tpl', NV_ROOTDIR . '/themes/' . $module_info['template'] . '/modules/' . $module_file );
+    $xtpl = new XTemplate( 'main.tpl', NV_ROOTDIR . '/themes/' . $module_info['template'] . '/modules/' . $module_file );
     $xtpl->assign( 'LANG', $lang_module );
 
 	if( !empty( $array_data ) )
@@ -46,6 +47,30 @@ function nv_theme_code_main ( $array_data, $page = '' )
 	{
 		$xtpl->assign( 'PAGE', $page );
 		$xtpl->parse( 'main.page' );
+	}
+
+    $xtpl->parse( 'main' );
+    return $xtpl->text( 'main' );
+}
+
+/**
+ * nv_theme_code_viewcat()
+ *
+ * @param mixed $array_data
+ * @param mixed $page
+ * @return
+ */
+function nv_theme_code_viewcat( $array_data, $page = '' )
+{
+    global $global_config, $module_name, $module_file, $lang_module, $module_config, $module_info, $op;
+
+    $xtpl = new XTemplate( 'viewcat.tpl', NV_ROOTDIR . '/themes/' . $module_info['template'] . '/modules/' . $module_file );
+    $xtpl->assign( 'LANG', $lang_module );
+
+	if( !empty( $array_data ) )
+	{
+		$data = nv_theme_code_main( $array_data, $page );
+		$xtpl->assign( 'DATA', $data );
 	}
 
     $xtpl->parse( 'main' );

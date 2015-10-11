@@ -14,22 +14,48 @@ define( 'NV_IS_MOD_CODE', true );
 require_once NV_ROOTDIR . '/modules/' . $module_file . '/global.functions.php';
 
 $page = 1;
-$per_page = 20;
-$id = 0;
+$per_page = 2;
+$cat_id = $id = 0;
+$alias = isset( $array_op[0] ) ? $array_op[0] : '';
+$alias_url = '';
+
+foreach( $array_cat as $cat )
+{
+	$array_cat[$cat['id']]['link'] =  NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=' . $cat['alias'];
+
+	if( $alias == $cat['alias'] )
+	{
+		$cat_id = $cat['id'];
+	}
+}
 
 if( $op == 'main' )
 {
-	if( sizeof( $array_op ) == 1 )
+	if( empty( $cat_id ) )
 	{
 		if( preg_match( '/^page\-([0-9]+)$/', ( isset( $array_op[0] ) ? $array_op[0] : '' ), $m ) )
 		{
 			$page = ( int )$m[1];
 		}
-		elseif( preg_match( '/^([a-z0-9\-]+)\-([0-9]+)$/i', $array_op[0], $m1 ) and ! preg_match( '/^page\-([0-9]+)$/', $array_op[0], $m2 ) )
+
+		if( sizeof( $array_op ) == 1 and preg_match( '/^([a-z0-9\-]+)\-([0-9]+)$/i', $array_op[0], $m1 ) and ! preg_match( '/^page\-([0-9]+)$/', $array_op[0], $m2 ) )
 		{
 			$op = 'detail';
+			$alias_url = $m1[1];
 			$id = $m1[2];
 		}
+	}
+	else
+	{
+		if( preg_match( '/^page\-([0-9]+)$/', ( isset( $array_op[1] ) ? $array_op[1] : '' ), $m ) )
+		{
+			$page = ( int )$m[1];
+		}
+		$array_mod_title[] = array(
+			'title' => $array_cat[$cat_id]['title'],
+			'link' => ''
+		);
+		$op = 'viewcat';
 	}
 }
 

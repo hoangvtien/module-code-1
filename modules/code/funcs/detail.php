@@ -77,7 +77,7 @@ if( ! defined( 'GOOGLE_PLUS' ) )
 if( $array_data['catid'] > 0 )
 {
 	$contents .= '<h1>' . $array_data['title'] . '</h1>';
-	$contents .= '<span><strong>' . $lang_module['cat'] . '</strong>: <a href="#" title="' . $array_cat[$array_data['catid']]['title'] . '">' . $array_cat[$array_data['catid']]['title'] . '</a>&nbsp;&nbsp;&nbsp;<span><strong>' . $lang_module['poster'] . '</strong>: ' . $array_data['adduser'] . '</span>';
+	$contents .= '<span><strong>' . $lang_module['cat'] . '</strong>: <a href="' . $array_cat[$array_data['catid']]['link'] .'" title="' . $array_cat[$array_data['catid']]['title'] . '">' . $array_cat[$array_data['catid']]['title'] . '</a>&nbsp;&nbsp;&nbsp;<span><strong>' . $lang_module['poster'] . '</strong>: ' . $array_data['adduser'] . '</span>';
 }
 $contents .= '<div style="margin-top: 10px" class="clearfix"><div style="float: left; margin-right: 30px" class="fb-like" data-href="' . $client_info['selfurl'] . '" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div><div class="g-plusone" data-size="medium"></div></div>';
 $contents .= '<hr />';
@@ -94,6 +94,9 @@ if( !empty( $array_data['image'] ) )
 
 $page_title = $array_data['title'];
 $description = $array_data['description'];
+
+$array_mod_title[] = array( 'title' => $array_cat[$array_data['catid']]['title'], 'link' => $array_cat[$cat_id]['link'] );
+$array_mod_title[] = array( 'title' => $page_title, 'link' => '' );
 
 include NV_ROOTDIR . '/includes/header.php';
 echo nv_site_theme( $contents );
