@@ -14,7 +14,7 @@ define( 'NV_IS_MOD_CODE', true );
 require_once NV_ROOTDIR . '/modules/' . $module_file . '/global.functions.php';
 
 $page = 1;
-$per_page = 2;
+$per_page = 20;
 $cat_id = $id = 0;
 $alias = isset( $array_op[0] ) ? $array_op[0] : '';
 $alias_url = '';
