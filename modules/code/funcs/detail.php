@@ -95,8 +95,10 @@ if( !empty( $array_data['image'] ) )
 $page_title = $array_data['title'];
 $description = $array_data['description'];
 
-$array_mod_title[] = array( 'title' => $array_cat[$array_data['catid']]['title'], 'link' => $array_cat[$cat_id]['link'] );
-$array_mod_title[] = array( 'title' => $page_title, 'link' => '' );
+$array_mod_title = array(
+	array( 'title' => $array_cat[$array_data['catid']]['title'], 'link' => $array_cat[$array_data['catid']]['link'] ),
+	array( 'title' => $page_title, 'link' => '' )
+);
 
 include NV_ROOTDIR . '/includes/header.php';
 echo nv_site_theme( $contents );
