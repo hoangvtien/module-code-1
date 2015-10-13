@@ -97,7 +97,6 @@ $description = $array_data['description'];
 
 $array_mod_title = array(
 	array( 'title' => $array_cat[$array_data['catid']]['title'], 'link' => $array_cat[$array_data['catid']]['link'] ),
-	array( 'title' => $page_title, 'link' => '' )
 );
 
 include NV_ROOTDIR . '/includes/header.php';
