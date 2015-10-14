@@ -73,6 +73,17 @@ if( ! defined( 'GOOGLE_PLUS' ) )
 	</script>";
 	define( 'GOOGLE_PLUS', true );
 }
+/*
+$header = '';
+if( $array_data['catid'] > 0 )
+{
+	$header .= '<h1>' . $array_data['title'] . '</h1>';
+	$header .= '<span><strong>' . $lang_module['cat'] . '</strong>: <a href="' . $array_cat[$array_data['catid']]['link'] .'" title="' . $array_cat[$array_data['catid']]['title'] . '">' . $array_cat[$array_data['catid']]['title'] . '</a>&nbsp;&nbsp;&nbsp;<span><strong>' . $lang_module['poster'] . '</strong>: ' . $array_data['adduser'] . '</span>';
+}
+$header .= '<div style="margin-top: 10px" class="clearfix"><div style="float: left; margin-right: 30px" class="fb-like" data-href="' . $client_info['selfurl'] . '" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div><div class="g-plusone" data-size="medium"></div></div>';
+$header .= '<hr />';
+ *
+ */
 
 $contents .= nv_build_heading( $array_data );
 

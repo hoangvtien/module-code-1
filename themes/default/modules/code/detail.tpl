@@ -18,6 +18,8 @@
   })();
 </script>
 
+{HEADER}
+
 <!-- BEGIN: tabs -->
 <div class="clearfix">&nbsp;</div>
 <ul class="nav nav-tabs" role="tablist">

@@ -110,6 +110,32 @@ function nv_theme_code_detail ( $array_data )
     return $xtpl->text( 'main' );
 }
 
+/**
+ * nv_build_heading()
+ *
+ * @param mixed $array_data
+ * @return
+ */
+function nv_build_heading ( $array_data )
+{
+    global $global_config, $module_name, $module_file, $lang_module, $module_config, $module_info, $op, $array_cat;
+
+	$array_data['cat_title'] = $array_cat[$array_data['catid']]['title'];
+	$array_data['cat_link'] = $array_cat[$array_data['catid']]['link'];
+
+    $xtpl = new XTemplate( 'heading.tpl', NV_ROOTDIR . '/themes/' . $module_info['template'] . '/modules/' . $module_file );
+    $xtpl->assign( 'LANG', $lang_module );
+    $xtpl->assign( 'DATA', $array_data );
+
+	if( $array_data['catid'] > 0 )
+	{
+		$xtpl->parse( 'main.title' );
+	}
+
+    $xtpl->parse( 'main' );
+    return $xtpl->text( 'main' );
+}
+
 function nv_build_demo( $array_data )
 {
 	global $db, $nv_Request, $module_name, $module_upload, $op, $my_footer;
