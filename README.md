@@ -2,6 +2,8 @@
 
 Module code họat động trên NukeViet 4.0. Chức năng tạo demo, hiển thị code PHP, HTML, CSS, Javascript - Jquery
 
+Demo: http://developers.mynukeviet.net/code/
+
 # Cài đặt
 
 - Module họat động trên NukeViet 4.0 
