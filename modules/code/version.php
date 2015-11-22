@@ -12,7 +12,7 @@ if ( ! defined( 'NV_MAINFILE' ) ) die( 'Stop!!!' );
 
 $module_version = array(
 	'name' => 'Code',
-	'modfuncs' => 'main,detail,viewcat',
+	'modfuncs' => 'main,detail,viewcat,rss',
 	'submenu' => 'main,detail',
 	'is_sysmod' => 0,
 	'virtual' => 1,
