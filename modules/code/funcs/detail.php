@@ -82,6 +82,7 @@ if( $array_data['viewdemo'] )
 }
 $contents .= nv_theme_code_detail( $array_data );
 
+$meta_property['og:type'] = 'article';
 if( !empty( $array_data['image'] ) )
 {
 	$meta_property['og:image'] = NV_MY_DOMAIN . NV_BASE_SITEURL . NV_UPLOADS_DIR . '/' . $module_upload . '/' . $array_data['image'];
