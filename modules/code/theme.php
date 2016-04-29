@@ -118,7 +118,7 @@ function nv_theme_code_detail ( $array_data )
  */
 function nv_build_heading ( $array_data )
 {
-    global $global_config, $module_name, $module_file, $lang_module, $module_config, $module_info, $op, $array_cat;
+    global $global_config, $module_name, $module_file, $lang_module, $module_config, $module_info, $op, $array_cat, $client_info;
 
 	$array_data['cat_title'] = $array_cat[$array_data['catid']]['title'];
 	$array_data['cat_link'] = $array_cat[$array_data['catid']]['link'];
@@ -126,6 +126,7 @@ function nv_build_heading ( $array_data )
     $xtpl = new XTemplate( 'heading.tpl', NV_ROOTDIR . '/themes/' . $module_info['template'] . '/modules/' . $module_file );
     $xtpl->assign( 'LANG', $lang_module );
     $xtpl->assign( 'DATA', $array_data );
+    $xtpl->assign( 'URL', $client_info['selfurl'] );
 
 	if( $array_data['catid'] > 0 )
 	{
