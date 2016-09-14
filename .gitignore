@@ -38,3 +38,5 @@
 !/themes/default/modules/code
 !/themes/default/modules/code/*
 /.project
+/.settings/
+/.buildpath

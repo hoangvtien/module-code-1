@@ -43,6 +43,12 @@ $sql = 'SELECT username, last_name, first_name FROM ' . NV_USERS_GLOBALTABLE . '
 list( $username, $last_name, $first_name ) = $db->query( $sql )->fetch( 3 );
 $array_data['adduser'] = nv_show_name_user( $first_name, $last_name, $username );
 
+$sql = 'SELECT title, link, logo FROM ' . NV_PREFIXLANG . '_' . $module_data . '_sources WHERE sourceid = ' . $array_data['sourceid'];
+$result = $db->query( $sql );
+
+list( $array_data['sourcetext'], $array_data['source_link'], $array_data['source_logo'] ) = $result->fetch( 3 );
+unset( $sql, $result );
+
 if( ! defined( 'FACEBOOK_JSSDK' ) )
 {
 	$lang = ( NV_LANG_DATA == 'vi' ) ? 'vi_VN' : 'en_US';

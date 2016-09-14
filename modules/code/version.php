@@ -18,7 +18,7 @@ $module_version = array(
 	'virtual' => 1,
 	'version' => '4.0.00',
 	'date' => 'Tue, 14 Jul 2015 04:03:53 GMT',
-	'author' => 'Hồ Ngọc Triển (hongoctrien@2mit.org)',
-	'uploads_dir' => array($module_name),
+	'author' => 'Ứng dụng NukeViet (contact@mynukeviet.net)',
+	'uploads_dir' => array($module_upload, $module_upload . '/source'),
 	'note' => ''
 );

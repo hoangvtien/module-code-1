@@ -27,3 +27,4 @@ $lang_module['cat'] = 'Chủ đề';
 $lang_module['poster'] = 'Người đăng';
 $lang_module['content'] = 'Nội dung';
 $lang_module['page'] = 'Trang';
+$lang_module['source'] = 'Nguồn';

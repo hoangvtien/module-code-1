@@ -25,15 +25,10 @@ $lang_module['description'] = 'Mô tả';
 $lang_module['descriptionhtml'] = 'Mô tả chi tiết';
 $lang_module['keywords'] = 'Từ khóa';
 $lang_module['image'] = 'Hình ảnh';
-
 $lang_module['cat'] = 'Chủ đề';
 $lang_module['cat_add'] = 'Thêm chủ đề';
 $lang_module['cat_edit'] = 'Sửa chủ đề';
 $lang_module['cat_none'] = 'Không thuộc chủ đề nào';
-$lang_module['error_required_title'] = 'Bạn cần nhập tiêu đề';
-$lang_module['error_required_catid'] = 'Bạn cần chọn chủ đề';
-
-//Lang for function content
 $lang_module['add'] = 'Thêm mới';
 $lang_module['edit'] = 'Sửa';
 $lang_module['delete'] = 'Xóa';
@@ -51,5 +46,13 @@ $lang_module['code_js'] = 'Mã javascript';
 $lang_module['viewcount'] = 'Lượt xem';
 $lang_module['status'] = 'Trạng thái';
 $lang_module['viewdemo'] = 'Hiển thị demo';
+$lang_module['sources'] = 'Nguồn tin';
+$lang_module['weight'] = 'STT';
+$lang_module['add_sources'] = 'Thêm nguồn tin';
+$lang_module['edit_sources'] = 'Sửa nguồn tin';
+$lang_module['link'] = 'Website nguồn tin';
+$lang_module['source_logo'] = 'Logo nguồn tin';
+
+$lang_module['error_required_catid'] = 'Bạn cần chọn chủ đề';
 $lang_module['error_required_title'] = 'Lỗi: bạn cần nhập dữ liệu cho Tiêu đề';
 $lang_module['error_database'] = 'Có lỗi xảy ra trong quá trình tương tác với CSDL';

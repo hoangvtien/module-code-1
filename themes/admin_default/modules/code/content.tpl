@@ -1,4 +1,9 @@
 <!-- BEGIN: main -->
+<link type="text/css" href="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/ui/jquery.ui.core.css" rel="stylesheet" />
+<link type="text/css" href="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/ui/jquery.ui.theme.css" rel="stylesheet" />
+<link type="text/css" href="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/ui/jquery.ui.menu.css" rel="stylesheet" />
+<link type="text/css" href="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/ui/jquery.ui.autocomplete.css" rel="stylesheet" />
+
 <script src="{NV_BASE_SITEURL}modules/{MODULE_FILE}/js/codemirror/lib/codemirror.js"></script>
 <link rel="stylesheet" href="{NV_BASE_SITEURL}modules/{MODULE_FILE}/js/codemirror/lib/codemirror.css">
 <script src="{NV_BASE_SITEURL}modules/{MODULE_FILE}/js/codemirror/mode/javascript/javascript.js"></script>
@@ -94,6 +99,13 @@
 							<textarea class="form-control" name="code_js" id="code_js">{ROW.code_js}</textarea>
 						</div>
 					</div>
+					<div class="form-group">
+						<label class="col-sm-5 col-md-3 control-label"><strong>{LANG.sources}</strong></label>
+						<div class="col-sm-14 col-md-21">
+							<input class="form-control" type="text" maxlength="255" value="{ROW.sourcetext}" name="sourcetext" id="AjaxSourceText" />
+						</div>
+					</div>
+					
 					<input type="hidden" name="submit" />
 					<div class="form-group" style="text-align: center"><input class="btn btn-primary" type="submit" value="{LANG.save}" />
 					</div>
@@ -117,7 +129,10 @@
 		</div>
 	</div>
 </form>
-
+<script type="text/javascript" src="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/ui/jquery.ui.core.min.js"></script>
+<script type="text/javascript" src="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/ui/jquery.ui.menu.min.js"></script>
+<script type="text/javascript" src="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/ui/jquery.ui.autocomplete.min.js"></script>
+<script type="text/javascript" src="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/ui/jquery.ui.datepicker.min.js"></script>
 <script type="text/javascript">
 	//<![CDATA[
 	var CodeMirror_HTML = CodeMirror.fromTextArea(document.getElementById("code_html"), {
