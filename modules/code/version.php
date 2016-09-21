@@ -7,18 +7,21 @@
  * @License GNU/GPL version 2 or any later version
  * @Createdate Tue, 14 Jul 2015 04:03:52 GMT
  */
-
-if ( ! defined( 'NV_MAINFILE' ) ) die( 'Stop!!!' );
+if (! defined('NV_MAINFILE'))
+    die('Stop!!!');
 
 $module_version = array(
-	'name' => 'Code',
-	'modfuncs' => 'main,detail,viewcat,rss',
-	'submenu' => 'main,detail',
-	'is_sysmod' => 0,
-	'virtual' => 1,
-	'version' => '4.0.00',
-	'date' => 'Tue, 14 Jul 2015 04:03:53 GMT',
-	'author' => 'Ứng dụng NukeViet (contact@mynukeviet.net)',
-	'uploads_dir' => array($module_upload, $module_upload . '/source'),
-	'note' => ''
+    'name' => 'Code',
+    'modfuncs' => 'main,detail,viewcat,rss',
+    'submenu' => 'main,detail',
+    'is_sysmod' => 0,
+    'virtual' => 1,
+    'version' => '4.0.00',
+    'date' => 'Tue, 14 Jul 2015 04:03:53 GMT',
+    'author' => 'Ứng dụng NukeViet (contact@mynukeviet.net)',
+    'uploads_dir' => array(
+        $module_upload,
+        $module_upload . '/source'
+    ),
+    'note' => ''
 );

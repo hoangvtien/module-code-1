@@ -7,9 +7,10 @@
  * @License GNU/GPL version 2 or any later version
  * @Createdate 2-10-2010 18:49
  */
-
-if( ! defined( 'NV_IS_FILE_ADMIN' ) ) die( 'Stop!!!' );
-if( ! defined( 'NV_IS_AJAX' ) ) die( 'Wrong URL' );
+if (! defined('NV_IS_FILE_ADMIN'))
+    die('Stop!!!');
+if (! defined('NV_IS_AJAX'))
+    die('Wrong URL');
 
 $contents = nv_show_sources_list();
 

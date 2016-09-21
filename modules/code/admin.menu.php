@@ -7,8 +7,8 @@
  * @License GNU/GPL version 2 or any later version
  * @Createdate Tue, 14 Jul 2015 04:03:52 GMT
  */
-
-if ( ! defined( 'NV_ADMIN' ) ) die( 'Stop!!!' );
+if (! defined('NV_ADMIN'))
+    die('Stop!!!');
 
 $submenu['content'] = $lang_module['content'];
 $submenu['cat'] = $lang_module['cat'];
