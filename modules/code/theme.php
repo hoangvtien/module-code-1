@@ -76,17 +76,17 @@ function nv_theme_code_viewcat($array_data, $page = '')
  * nv_theme_code_detail()
  *
  * @param mixed $array_data            
+ * @param mixed $array_data_other            
  * @return
  *
  */
-function nv_theme_code_detail($array_data)
+function nv_theme_code_detail($array_data, $array_data_other)
 {
     global $global_config, $module_name, $module_file, $lang_module, $module_config, $module_info, $op;
     
     $xtpl = new XTemplate($op . '.tpl', NV_ROOTDIR . '/themes/' . $module_info['template'] . '/modules/' . $module_file);
     $xtpl->assign('LANG', $lang_module);
     $xtpl->assign('ROW', $array_data);
-    $xtpl->assign('NV_BASE_SITEURL', NV_BASE_SITEURL);
     $xtpl->assign('MODULE_FILE', $module_file);
     
     if (! empty($array_data)) {
@@ -97,6 +97,19 @@ function nv_theme_code_detail($array_data)
         }
         $xtpl->parse('main.tabs');
         $xtpl->parse('main.tabs_content');
+    }
+    
+    if(!empty($array_data_other)){
+        foreach($array_data_other as $data_other){
+            $xtpl->assign('OTHER', $data_other);
+            if (! empty($data_other['image'])) {
+                $xtpl->parse('main.other.loop.image');
+            } else {
+                $xtpl->parse('main.other.loop.icon');
+            }
+            $xtpl->parse('main.other.loop');
+        }
+        $xtpl->parse('main.other');
     }
     
     $xtpl->parse('main');

@@ -28,3 +28,4 @@ $lang_module['poster'] = 'Người đăng';
 $lang_module['content'] = 'Nội dung';
 $lang_module['page'] = 'Trang';
 $lang_module['source'] = 'Nguồn';
+$lang_module['other'] = 'Cùng chủ đề';

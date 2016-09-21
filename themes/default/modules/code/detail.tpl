@@ -138,4 +138,28 @@
 </script>
 <!-- END: tabs_content -->
 <div class="clearfix">&nbsp;</div>
+
+<!-- BEGIN: other -->
+<div class="other">
+	<h2 class="m-bottom">{LANG.other}</h2>
+	<div class="row">
+		<!-- BEGIN: loop -->
+		<div class="col-sm-8 col-md-8 item">
+			<div class="image text-center">
+				<a href="{OTHER.url_view}" title="{OTHER.title}">
+					<!-- BEGIN: image -->
+					<img src="{OTHER.image}" alt="{OTHER.title}"  />
+					<!-- END: image -->
+					<!-- BEGIN: icon -->
+					<em class="fa fa-code fa-5x list-image">&nbsp;</em>
+					<!-- END: icon -->
+				</a>
+			</div>
+			<a href="{OTHER.url_view}" title="{OTHER.title}"><strong>{OTHER.title}</strong></a>
+		</div>
+		<!-- END: loop -->
+	</div>
+</div>
+<!-- END: other -->
+
 <!-- END: main -->

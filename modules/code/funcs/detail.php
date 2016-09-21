@@ -47,6 +47,22 @@ $result = $db->query($sql);
 list ($array_data['sourcetext'], $array_data['source_link'], $array_data['source_logo']) = $result->fetch(3);
 unset($sql, $result);
 
+// Cung chu de
+$array_data_other = array();
+$result = $db->query('SELECT id, title, alias, image FROM ' . NV_PREFIXLANG . '_' . $module_data . ' WHERE catid=' . $array_data['catid'] . ' LIMIT 9');
+while($row = $result->fetch()){
+    $row['url_view'] = NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=' . $module_name . '/' . $row['alias'] . '-' . $row['id'];
+    
+    if(!empty($row['image']) and file_exists(NV_ROOTDIR . '/' . NV_ASSETS_DIR . '/' . $module_upload . '/' . $row['image'])){
+         $row['image'] = NV_BASE_SITEURL . NV_ASSETS_DIR . '/' . $module_upload . '/' . $row['image'];
+    }elseif(!empty($row['image']) and file_exists(NV_ROOTDIR . '/' . NV_UPLOADS_DIR . '/' . $module_upload . '/' . $row['image'])){
+        $row['image'] = NV_BASE_SITEURL . NV_UPLOADS_DIR . '/' . $module_upload . '/' . $row['image'];
+    }else{
+        $row['image'] = '';
+    }
+    $array_data_other[] = $row;
+}
+
 if (! defined('FACEBOOK_JSSDK')) {
     $lang = (NV_LANG_DATA == 'vi') ? 'vi_VN' : 'en_US';
     $facebookappid = '835372636499958';
@@ -81,7 +97,7 @@ $contents .= nv_build_heading($array_data);
 if ($array_data['viewdemo']) {
     $contents .= nv_build_demo($array_data);
 }
-$contents .= nv_theme_code_detail($array_data);
+$contents .= nv_theme_code_detail($array_data, $array_data_other);
 
 $meta_property['og:type'] = 'article';
 if (! empty($array_data['image'])) {
