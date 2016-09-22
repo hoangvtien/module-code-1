@@ -49,7 +49,7 @@ unset($sql, $result);
 
 // Cung chu de
 $array_data_other = array();
-$result = $db->query('SELECT id, title, alias, image FROM ' . NV_PREFIXLANG . '_' . $module_data . ' WHERE catid=' . $array_data['catid'] . ' LIMIT 9');
+$result = $db->query('SELECT id, title, alias, image FROM ' . NV_PREFIXLANG . '_' . $module_data . ' WHERE catid=' . $array_data['catid'] . ' AND id != ' . $array_data['id'] . ' LIMIT 9');
 while($row = $result->fetch()){
     $row['url_view'] = NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=' . $module_name . '/' . $row['alias'] . '-' . $row['id'];
     

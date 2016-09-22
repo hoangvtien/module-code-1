@@ -28,5 +28,6 @@
 	float: left;
 	display: block;
 	margin-right: 10px;
-	border: solid #ddd 1px
+	border: solid #ddd 1px;
+	overflow: hidden;
 }
